@@ -1,4 +1,5 @@
 import entities.Person;
+import entities.Student;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -82,10 +83,38 @@ public class Main {
                 break;
 
             case 2:
-                System.out.println("Exercicio 02\n" +
-                                   "------------");
-                break;
+                System.out.println("""
+                        Exercicio 02
+                        ------------
+                        """);
 
+                System.out.print("Quantos alunos serão digitados? ");
+                Student[] students = new Student[sc.nextInt()];
+
+                for (int i = 0; i < students.length; i++) {
+                    System.out.printf("\nDigite nome, primeira e segunda nota do %dº aluno:\n", i + 1);
+
+                    System.out.print("Nome: ");
+                    sc.nextLine();
+                    String name = sc.nextLine();
+
+                    System.out.print("Primeira nota: ");
+                    double grade1 = sc.nextDouble();
+
+                    System.out.print("Segunda nota: ");
+                    double grade2 = sc.nextDouble();
+
+                    students[i] = new Student(name.trim(), grade1, grade2);
+                }
+
+                System.out.println("\nAlunos aprovados:");
+
+                for(Student student: students) {
+                    if(student.approved()) {
+                        System.out.println(student.getName());
+                    }
+                }
+                break;
         }
 
         sc.close();
